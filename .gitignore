@@ -1,0 +1,11 @@
+# Generated output – do not commit
+toddler-exams/output/
+toddler-exams/images/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+venv/
+.venv/
