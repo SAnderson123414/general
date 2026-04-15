@@ -24,9 +24,9 @@ logger = logging.getLogger(__name__)
 # ---------------------------------------------------------------------------
 
 IMAGE_URLS: dict[str, str] = {
-    # Family members
-    "mom":    "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Gatto_europeo4.jpg/320px-Gatto_europeo4.jpg",
-    "dad":    "",
+    # Family members – use Pillow-generated illustrations (reliable, age-appropriate)
+    "mom":     "",
+    "dad":     "",
     "grandma": "",
     "grandpa": "",
     "brother": "",
@@ -35,13 +35,13 @@ IMAGE_URLS: dict[str, str] = {
     "uncle":   "",
     "aunt":    "",
     "cousin":  "",
-    # Numbers
+    # Numbers – Pillow-generated number cards
     **{str(n): "" for n in range(1, 11)},
     # House items – Kitchen
     "stove":        "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/GasStove.jpg/320px-GasStove.jpg",
     "refrigerator": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/SMEG_refrigerator.jpg/320px-SMEG_refrigerator.jpg",
     "pot":          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Pot_of_soup.jpg/320px-Pot_of_soup.jpg",
-    "pan":          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/PNG_transparency_demonstration_1.png/320px-PNG_transparency_demonstration_1.png",
+    "pan":          "",
     "plate":        "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Dinner_plate_icon.svg/320px-Dinner_plate_icon.svg.png",
     "cup":          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/A_small_cup_of_coffee.JPG/320px-A_small_cup_of_coffee.JPG",
     "spoon":        "",
@@ -52,7 +52,7 @@ IMAGE_URLS: dict[str, str] = {
     "blanket":      "",
     "lamp":         "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Floor_lamp.jpg/320px-Floor_lamp.jpg",
     "dresser":      "",
-    "teddy bear":   "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Gatto_europeo4.jpg/320px-Gatto_europeo4.jpg",
+    "teddy bear":   "",
     "alarm clock":  "",
     # House items – Bathroom
     "bathtub":      "",
@@ -70,12 +70,12 @@ IMAGE_URLS: dict[str, str] = {
     "remote control": "",
     "picture frame":  "",
     # Garden
-    "flowers":      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Camponotus_flavomarginatus_ant.jpg/320px-Camponotus_flavomarginatus_ant.jpg",
+    "flowers":      "",
     "tree":         "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/24701-nature-natural-beauty.jpg/320px-24701-nature-natural-beauty.jpg",
     "swing":        "",
     "watering can": "",
-    "butterfly":    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Camponotus_flavomarginatus_ant.jpg/320px-Camponotus_flavomarginatus_ant.jpg",
-    "grass":        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/TheCheethcat.jpg/320px-TheCheethcat.jpg",
+    "butterfly":    "",
+    "grass":        "",
 }
 
 # Fallback colors for each concept (used when drawing shapes)
@@ -422,7 +422,7 @@ def _draw_teddy(draw: ImageDraw.ImageDraw, color: tuple) -> None:
     draw.ellipse([135, 100, 170, 140], fill=color, outline=(0, 0, 0), width=2)
     draw.ellipse([82, 52, 98, 68], fill=(50, 30, 20))
     draw.ellipse([102, 52, 118, 68], fill=(50, 30, 20))
-    draw.ellipse([88, 70, 112, 86], fill=(min(color[0]-30, 255), max(color[1]-30, 0), max(color[2]-30, 0)))
+    draw.ellipse([88, 70, 112, 86], fill=(max(color[0]-30, 0), max(color[1]-30, 0), max(color[2]-30, 0)))
     draw.arc([88, 75, 112, 92], start=0, end=180, fill=(80, 40, 20), width=2)
 
 
