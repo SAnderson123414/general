@@ -76,8 +76,8 @@ class LiteracyPDF(FPDF):
         self.multi_cell(
             0,
             5,
-            "Literacy exam images use free OpenMoji artwork (CC BY-SA 4.0): "
-            "https://openmoji.org/",
+            "Literacy exam images use free sources (including OpenMoji CC BY-SA 4.0 "
+            "and other openly licensed image URLs).",
         )
         self.set_font("Helvetica", "", 8)
         y = 36
@@ -203,9 +203,6 @@ def build_exam_3():
         pdf.set_font("Helvetica", "B", 12)
         pdf.cell(24, 8, letter, align="C")
         right_points.append((right_x, row_y + 7))
-
-    for lp, rp in zip(left_points, right_points):
-        pdf.line(lp[0], lp[1], rp[0], rp[1])
 
     pdf.set_font("Helvetica", "", 11)
     pdf.set_xy(12, 245)
