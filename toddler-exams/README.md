@@ -58,6 +58,12 @@ toddler-exams/
    ```
    This will download/generate images and create 5 PDF exams in the `output/` folder.
 
+4. **Generate literacy exams (picture-based):**
+   ```bash
+   python generate_literacy_exams.py
+   ```
+   This creates literacy PDFs in `output/toddler_literacy_exams/`.
+
 ## Usage
 
 ```bash
