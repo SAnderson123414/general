@@ -10,7 +10,7 @@ from pathlib import Path
 
 from fpdf import FPDF
 
-from utils.image_downloader import get_image_path, preload_images
+from utils.image_downloader import IMAGE_URLS, get_image_path, preload_images
 
 BASE_DIR = Path(__file__).parent
 IMAGES_DIR = BASE_DIR / "images"
@@ -63,6 +63,35 @@ class LiteracyPDF(FPDF):
             self.set_xy(x, y + h - 9)
             self.cell(w, 7, label, align="C")
 
+    def add_image_credits_page(self, concepts: list[str]):
+        self.add_page()
+        self.set_fill_color(255, 255, 255)
+        self.rect(0, 0, self.w, self.h, "F")
+        self.set_text_color(20, 20, 30)
+        self.set_font("Helvetica", "B", 14)
+        self.set_xy(12, 14)
+        self.cell(0, 9, "Image Credits")
+        self.set_font("Helvetica", "", 10)
+        self.set_xy(12, 24)
+        self.multi_cell(
+            0,
+            5,
+            "Literacy exam images use free OpenMoji artwork (CC BY-SA 4.0): "
+            "https://openmoji.org/",
+        )
+        self.set_font("Helvetica", "", 8)
+        y = 36
+        for concept in sorted(set(concepts)):
+            url = IMAGE_URLS.get(concept, "")
+            if not url:
+                continue
+            self.set_xy(12, y)
+            self.multi_cell(0, 4, f"{concept.title()}: {url}")
+            y = self.get_y() + 1
+            if y > self.h - 15:
+                self.add_page()
+                y = 15
+
 
 def build_exam_1():
     pdf = LiteracyPDF()
@@ -85,24 +114,31 @@ def build_exam_1():
     pdf.set_xy(12, 105)
     pdf.cell(0, 8, "B) Circle the correct first letter for each picture.")
 
-    y = 115
-    for _, word in LETTER_PICTURE_PAIRS:
-        pdf.picture_card(12, y, 34, 28, word)
+    start_x = 12
+    start_y = 113
+    col_gap = 64
+    row_gap = 62
+    for idx, (_, word) in enumerate(LETTER_PICTURE_PAIRS):
+        col = idx % 3
+        row = idx // 3
+        x = start_x + col * col_gap
+        y = start_y + row * row_gap
+        pdf.picture_card(x, y, 42, 34, word)
         correct = word[0].upper()
         options = [f"{correct}{correct.lower()}", "Aa", "Mm"]
         if correct in ("A", "M"):
             options[2] = "Zz"
-        x = 55
+        option_x = x
+        option_y = y + 37
         for opt in options:
             pdf.set_fill_color(255, 255, 255)
-            pdf.rect(x, y + 8, 16, 12, "FD")
-            pdf.set_xy(x, y + 10)
-            pdf.set_font("Helvetica", "B", 11)
-            pdf.cell(16, 8, opt, align="C")
-            pdf.ellipse(x - 4, y + 8, 3.5, 3.5)
-            x += 23
-        y += 31
+            pdf.rect(option_x, option_y, 12, 10, "FD")
+            pdf.set_xy(option_x, option_y + 1)
+            pdf.set_font("Helvetica", "B", 9)
+            pdf.cell(12, 8, opt, align="C")
+            option_x += 14
 
+    pdf.add_image_credits_page([word for _, word in LETTER_PICTURE_PAIRS])
     pdf.output(str(OUTPUT_DIR / "exam_1_letter_recognition_and_sound.pdf"))
 
 
@@ -134,6 +170,7 @@ def build_exam_2():
     pdf.set_font("Helvetica", "", 11)
     pdf.set_xy(12, 191)
     pdf.cell(0, 7, "Review tip: adult says word first, toddler repeats.")
+    pdf.add_image_credits_page([word for _, words in WORD_FAMILY_ROWS for word in words])
     pdf.output(str(OUTPUT_DIR / "exam_2_word_endings_and_sight_words.pdf"))
 
 
@@ -173,6 +210,7 @@ def build_exam_3():
     pdf.set_font("Helvetica", "", 11)
     pdf.set_xy(12, 245)
     pdf.cell(0, 7, "Bonus review: say each first sound out loud with an adult.")
+    pdf.add_image_credits_page([word for _, word in LETTER_PICTURE_PAIRS])
     pdf.output(str(OUTPUT_DIR / "exam_3_picture_initial_letter_match.pdf"))
 
 
@@ -183,6 +221,13 @@ def main():
     concepts = [word for _, word in LETTER_PICTURE_PAIRS]
     for _, words in WORD_FAMILY_ROWS:
         concepts.extend(words)
+
+    for concept in concepts:
+        safe_name = concept.replace(" ", "_").replace("/", "_")
+        cached = IMAGES_DIR / "literacy" / f"{safe_name}.png"
+        if cached.exists():
+            cached.unlink()
+
     preload_images(concepts, IMAGES_DIR)
 
     build_exam_1()

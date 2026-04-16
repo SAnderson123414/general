@@ -76,19 +76,19 @@ IMAGE_URLS: dict[str, str] = {
     "watering can": "",
     "butterfly":    "",
     "grass":        "",
-    # Literacy picture words
-    "fish":         "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Catfish.jpg/320px-Catfish.jpg",
-    "leaf":         "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Leaf_1.jpg/320px-Leaf_1.jpg",
-    "goat":         "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Goat_in_capeweed.jpg/320px-Goat_in_capeweed.jpg",
-    "orange":       "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Orange-Fruit-Pieces.jpg/320px-Orange-Fruit-Pieces.jpg",
-    "umbrella":     "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Umbrella_01.jpg/320px-Umbrella_01.jpg",
-    "dog":          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Collage_of_Nine_Dogs.jpg/320px-Collage_of_Nine_Dogs.jpg",
-    "cat":          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Felis_catus-cat_on_snow.jpg/320px-Felis_catus-cat_on_snow.jpg",
-    "rat":          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Rat_na.jpg/320px-Rat_na.jpg",
-    "ham":          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Ham_%28cropped%29.jpg/320px-Ham_%28cropped%29.jpg",
-    "jam":          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Homemade_strawberry_jam.jpg/320px-Homemade_strawberry_jam.jpg",
-    "can":          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Cans_for_recycling.jpg/320px-Cans_for_recycling.jpg",
-    "fan":          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Ceiling_fan.jpg/320px-Ceiling_fan.jpg",
+    # Literacy picture words (OpenMoji - CC BY-SA 4.0, GitHub-hosted PNGs)
+    "fish":         "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/618x618/1F41F.png",
+    "leaf":         "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/618x618/1F343.png",
+    "goat":         "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/618x618/1F410.png",
+    "orange":       "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/618x618/1F34A.png",
+    "umbrella":     "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/618x618/2602.png",
+    "dog":          "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/618x618/1F436.png",
+    "cat":          "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/618x618/1F408.png",
+    "rat":          "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/618x618/1F400.png",
+    "ham":          "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/618x618/1F969.png",
+    "jam":          "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/618x618/1F353.png",
+    "can":          "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/618x618/1F96B.png",
+    "fan":          "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/618x618/1FAAD.png",
 }
 
 LITERACY_WORDS = {
