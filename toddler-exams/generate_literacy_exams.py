@@ -225,8 +225,7 @@ def main():
     for concept in concepts:
         safe_name = concept.replace(" ", "_").replace("/", "_")
         cached = IMAGES_DIR / "literacy" / f"{safe_name}.png"
-        if cached.exists():
-            cached.unlink()
+        cached.unlink(missing_ok=True)
 
     preload_images(concepts, IMAGES_DIR)
 
