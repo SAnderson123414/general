@@ -76,6 +76,24 @@ IMAGE_URLS: dict[str, str] = {
     "watering can": "",
     "butterfly":    "",
     "grass":        "",
+    # Literacy picture words
+    "fish":         "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Catfish.jpg/320px-Catfish.jpg",
+    "leaf":         "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Leaf_1.jpg/320px-Leaf_1.jpg",
+    "goat":         "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Goat_in_capeweed.jpg/320px-Goat_in_capeweed.jpg",
+    "orange":       "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Orange-Fruit-Pieces.jpg/320px-Orange-Fruit-Pieces.jpg",
+    "umbrella":     "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Umbrella_01.jpg/320px-Umbrella_01.jpg",
+    "dog":          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Collage_of_Nine_Dogs.jpg/320px-Collage_of_Nine_Dogs.jpg",
+    "cat":          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Felis_catus-cat_on_snow.jpg/320px-Felis_catus-cat_on_snow.jpg",
+    "rat":          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Rat_na.jpg/320px-Rat_na.jpg",
+    "ham":          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Ham_%28cropped%29.jpg/320px-Ham_%28cropped%29.jpg",
+    "jam":          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Homemade_strawberry_jam.jpg/320px-Homemade_strawberry_jam.jpg",
+    "can":          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Cans_for_recycling.jpg/320px-Cans_for_recycling.jpg",
+    "fan":          "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Ceiling_fan.jpg/320px-Ceiling_fan.jpg",
+}
+
+LITERACY_WORDS = {
+    "fish", "leaf", "goat", "orange", "umbrella", "dog",
+    "cat", "rat", "ham", "jam", "can", "fan",
 }
 
 # Fallback colors for each concept (used when drawing shapes)
@@ -130,6 +148,19 @@ FALLBACK_COLORS: dict[str, tuple] = {
     "watering can":  (100, 180, 255),
     "butterfly":     (255, 150, 50),
     "grass":         (100, 200, 100),
+    # Literacy words
+    "fish":          (100, 170, 255),
+    "leaf":          (110, 190, 110),
+    "goat":          (210, 190, 160),
+    "orange":        (255, 160, 70),
+    "umbrella":      (180, 120, 255),
+    "dog":           (180, 140, 95),
+    "cat":           (170, 150, 130),
+    "rat":           (140, 140, 140),
+    "ham":           (255, 170, 170),
+    "jam":           (220, 80, 120),
+    "can":           (170, 180, 190),
+    "fan":           (160, 160, 220),
 }
 
 IMG_SIZE = (200, 200)
@@ -164,6 +195,8 @@ def _get_subdir(concept: str, images_dir: Path) -> Path:
     from utils.exam_content import FAMILY_MEMBERS, ROOMS
     if concept in FAMILY_MEMBERS:
         return images_dir / "family"
+    if concept in LITERACY_WORDS:
+        return images_dir / "literacy"
     room_items = {item for items in ROOMS.values() for item in items}
     if concept in room_items:
         return images_dir / "house"
