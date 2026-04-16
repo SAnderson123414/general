@@ -86,7 +86,7 @@ class LiteracyPDF(FPDF):
             if not url:
                 continue
             self.set_xy(12, y)
-            self.multi_cell(0, 4, f"{concept.title()}: {url}")
+            self.multi_cell(0, 4, f"{concept}: {url}")
             y = self.get_y() + 1
             if y > self.h - 15:
                 self.add_page()
