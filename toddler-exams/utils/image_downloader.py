@@ -88,7 +88,7 @@ IMAGE_URLS: dict[str, str] = {
     "ham":          "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/618x618/1F969.png",
     "jam":          "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/618x618/1F353.png",
     "can":          "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/618x618/1F96B.png",
-    "fan":          "https://raw.githubusercontent.com/hfg-gmuend/openmoji/master/color/618x618/1FAAD.png",
+    "fan":          "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Table_Fan.jpg/320px-Table_Fan.jpg",
 }
 
 LITERACY_WORDS = {
@@ -271,6 +271,8 @@ def _generate_fallback(concept: str, dest: Path) -> None:
         _draw_pot(draw, color)
     elif concept == "teddy bear":
         _draw_teddy(draw, color)
+    elif concept == "fan":
+        _draw_fan(draw, color)
     elif concept.isdigit():
         _draw_number_card(draw, int(concept))
     else:
@@ -457,6 +459,21 @@ def _draw_teddy(draw: ImageDraw.ImageDraw, color: tuple) -> None:
     draw.ellipse([102, 52, 118, 68], fill=(50, 30, 20))
     draw.ellipse([88, 70, 112, 86], fill=(max(color[0]-30, 0), max(color[1]-30, 0), max(color[2]-30, 0)))
     draw.arc([88, 75, 112, 92], start=0, end=180, fill=(80, 40, 20), width=2)
+
+
+def _draw_fan(draw: ImageDraw.ImageDraw, color: tuple) -> None:
+    # Stand
+    draw.rectangle([94, 135, 106, 170], fill=(120, 120, 120), outline=(0, 0, 0), width=2)
+    draw.ellipse([70, 165, 130, 185], fill=(140, 140, 140), outline=(0, 0, 0), width=2)
+    # Fan guard
+    draw.ellipse([40, 35, 160, 155], fill=(230, 235, 245), outline=(60, 60, 60), width=4)
+    draw.ellipse([52, 47, 148, 143], outline=(90, 90, 90), width=2)
+    # Blades
+    draw.polygon([(100, 95), (135, 78), (128, 108)], fill=color, outline=(0, 0, 0))
+    draw.polygon([(100, 95), (78, 60), (108, 66)], fill=color, outline=(0, 0, 0))
+    draw.polygon([(100, 95), (75, 123), (102, 128)], fill=color, outline=(0, 0, 0))
+    # Hub
+    draw.ellipse([90, 85, 110, 105], fill=(160, 160, 160), outline=(0, 0, 0), width=2)
 
 
 def _draw_number_card(draw: ImageDraw.ImageDraw, number: int) -> None:
