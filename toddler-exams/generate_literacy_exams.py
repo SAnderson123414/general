@@ -76,8 +76,8 @@ class LiteracyPDF(FPDF):
         self.multi_cell(
             0,
             5,
-            "Literacy exam images use free sources (including OpenMoji CC BY-SA 4.0 "
-            "and other openly licensed image URLs).",
+            "Literacy exam images use free sources, including OpenMoji "
+            "(CC BY-SA 4.0) and Wikimedia Commons (openly licensed).",
         )
         self.set_font("Helvetica", "", 8)
         y = 36
