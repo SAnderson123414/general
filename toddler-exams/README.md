@@ -64,6 +64,12 @@ toddler-exams/
    ```
    This creates literacy PDFs in `output/toddler_literacy_exams/`.
 
+5. **Generate numeracy exams (toddler skills):**
+   ```bash
+   python generate_numeracy_exams.py
+   ```
+   This creates numeracy PDFs in `output/toddler_numeracy_exams/`.
+
 ## Usage
 
 ```bash
