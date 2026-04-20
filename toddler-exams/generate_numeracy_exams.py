@@ -75,7 +75,7 @@ class NumeracyPDF(FPDF):
         self.ellipse(x, y, w, h, "F")
         self.set_fill_color(255, 255, 255)
         self.rect(x - 0.5, y + (h / 2), w + 1, (h / 2) + 1, "F")
-        self.arc(x, y, w, h, 0, 180)
+        self.arc(x, y, w, 0, 180, b=h)
         self.line(x, y + (h / 2), x + w, y + (h / 2))
 
 
@@ -116,7 +116,7 @@ def add_exam_1(pdf: NumeracyPDF):
     pdf.set_xy(14, 176)
     pdf.cell(0, 6, "Circle the curved line, straight line, and zigzag line:")
     pdf.set_draw_color(40, 40, 40)
-    pdf.arc(20, 186, 30, 8, 0, 180)
+    pdf.arc(20, 186, 30, 0, 180, b=8)
     pdf.line(70, 190, 110, 190)
     pdf.line(125, 194, 133, 186)
     pdf.line(133, 186, 141, 194)
